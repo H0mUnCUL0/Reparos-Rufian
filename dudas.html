@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dudas - Reparos Rufián</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+    <header>
+        <h1>Atención de dudas</h1>
+    </header>
+    <main>
+        <section>
+            <h2>¿Tienes alguna duda?</h2>
+            <p>Rellena el siguiente formulario y un operador te atenderá lo antes posible.</p>
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required pattern="^[a-zA-Z0-9._%+-]+@(gmail|hotmail)\.com$" title="El correo debe terminar en @gmail.com o @hotmail.com">
+                <label for="mensaje">Tu duda:</label>
+                <textarea id="mensaje" name="mensaje" required></textarea>
+                <button type="submit">Enviar duda</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Reparos Rufián. Todos los derechos reservados.</p>
+    </footer>
+    <script src="confirmacion.js"></script>
+</body>
+</html>
