@@ -1,45 +1,63 @@
-// Script para mostrar mensaje de confirmación tras enviar formularios de dudas o reparaciones
+function generarCodigoReparacion() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let codigo = 'RUF-'; // Prefijo de la casa
+    for (let i = 0; i < 6; i++) {
+        codigo += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return codigo;
+}
+
+function guardarReparacion(datos) {
+    let reparaciones = JSON.parse(localStorage.getItem('reparaciones') || '[]');
+    reparaciones.push(datos);
+    localStorage.setItem('reparaciones', JSON.stringify(reparaciones));
+}
+
+// 2. Lógica del Formulario
 document.addEventListener('DOMContentLoaded', function() {
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Detectar si es dudas o reparaciones por el título de la página
-            if (document.title.toLowerCase().includes('duda')) {
-                window.location.href = 'confirmacion_duda.html';
-            } else if (document.title.toLowerCase().includes('reparación') || document.title.toLowerCase().includes('reparacion')) {
-                // Guardar datos de reparación y generar código
-                const nombre = form.querySelector('#nombre').value;
-                const email = form.querySelector('#email').value;
-                const dispositivo = form.querySelector('#dispositivo').value;
-                const descripcion = form.querySelector('#descripcion').value;
-                const datosSinCodigo = {
-                    nombre,
-                    email,
-                    dispositivo,
-                    descripcion
-                };
-                if (window.reparosRufian.existeReparacionIgual(datosSinCodigo)) {
-                    // Mostrar mensaje de error y no crear la orden
-                    alert('Ya existe una orden de reparación con estos datos. No se puede crear una igual.');
-                    return;
-                }
-                const codigo = window.reparosRufian.generarCodigoReparacion();
-                const datos = {
-                    codigo,
-                    nombre,
-                    email,
-                    dispositivo,
-                    descripcion,
-                    estado: 'Pendiente'
-                };
-                window.reparosRufian.guardarReparacion(datos);
-                // Guardar el código en sessionStorage para mostrarlo en la confirmación
-                sessionStorage.setItem('codigoReparacion', codigo);
-                window.location.href = 'confirmacion_reparacion.html';
-            } else {
-                window.location.href = 'index.html';
+    const formReparacion = document.querySelector('form'); // Detecta el formulario
+
+    if (formReparacion) {
+        formReparacion.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Capturar valores
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const descripcion = document.getElementById('descripcion').value;
+            
+            // CAPTURA ESPECIAL PARA LAS IMÁGENES (Radio Buttons)
+            const dispositivoSeleccionado = document.querySelector('input[name="dispositivo"]:checked');
+            
+            if (!dispositivoSeleccionado) {
+                alert("Por favor, selecciona un dispositivo pinchando en una imagen.");
+                return;
             }
+
+            const dispositivo = dispositivoSeleccionado.value;
+
+            // Generar el código único
+            const nuevoCodigo = generarCodigoReparacion();
+
+            // Crear el objeto del estropicio
+            const datosOrden = {
+                codigo: nuevoCodigo,
+                nombre: nombre,
+                email: email,
+                dispositivo: dispositivo,
+                descripcion: descripcion,
+                fecha: new Date().toLocaleDateString(),
+                estado: 'Recibido'
+            };
+
+            // Guardar en el historial (LocalStorage)
+            guardarReparacion(datosOrden);
+
+            // Guardar en la sesión para la página de éxito
+            sessionStorage.setItem('codigoReparacion', nuevoCodigo);
+
+            // Redirigir (Asegúrate de que el nombre del HTML sea este)
+            window.location.href = 'reparacion_enviada.html';
         });
-    });
+    }
 });

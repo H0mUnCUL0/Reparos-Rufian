@@ -21,6 +21,7 @@
     header h2 img {
         max-width: 140px!important;
         margin: 0.5rem auto!important;
+        
     }
     #menu-inicial {
         margin: 1rem 0;
@@ -114,14 +115,15 @@
     <link rel="icon" type="image/png" href="logo1.png">
 </head>
 <body>
-    <header>
-        <h1>Reparos Rufián</h1>
-        <h2>
-            <img src="logo1.png" alt="Logo Reparos Rufián" style="max-width:120px;vertical-align:middle;margin-left:1rem;">
-        </h2>    
+    <header style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem; padding-bottom: 0.5rem;">
+        <h1 style="margin: 0; font-size: 2.1rem; text-align: center;">Bienvenido a Reparos Rufián</h1>
+        <div style="font-size: 1.20rem; font-weight: 700; color: #f7f7f7; margin-top: 0.2rem; text-align: center; ">Su estropicio es mi pan</div>
+        <img src="logo1.png" alt="Logo Reparos Rufián" style="max-width: 220px; margin: 0.8rem auto 0.3rem auto; display: block;">
+        <div style="font-size: 1.18rem; font-weight: 700; color: #9bbbd5; margin-top: 0.2rem; text-align: center; ">Especialistas en reparación y servicio técnico de dispositivos y consolas</div>
+        <div style="font-size: 1.05rem; color: #9bbbd5; margin-top: 0.1rem; text-align: center; font-weight: 600; ">Reparamos consolas, móviles, tablets, ordenadores y más</div>
     </header>
     <section id="menu-inicial" style="display:flex;flex-direction:column;align-items:center;justify-content:center;margin:2rem 0;">
-        <h2>¿Qué quieres hacer?</h2>
+        <h2>¿Qué desea hacer?</h2>
         <div style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;">
             <a href="consulta.html" class="menu-btn-soph">Consulta</a>
             <a href="reparacion.html" class="menu-btn-soph">Reparación</a>
@@ -130,11 +132,6 @@
         </div>
     </section>
     <main>
-        <section id="inicio">
-            <h2>Bienvenido a Reparos Rufián (su estropicio es mi pan)</h2>
-            
-            <p>Especialistas en reparación y servicio técnico de dispositivos y consolas.</p>
-        </section>
         <!-- Sección de servicios eliminada, ahora está en info.html -->
         <!-- Sección de tarifas eliminada, ahora está en info.html -->
         <!-- Sección de sobre nosotros eliminada, ahora está en info.html -->
@@ -144,86 +141,86 @@
             <p>Teléfono: 900 123 456</p>
             <p>Dirección: Calle Ave del paraíso, 17, Guarromán, Jaén </p>
         </section>
-        <section id="privada">
-            <h2>Área privada</h2>
-            <form>
-                <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" name="usuario" required>
-                <label for="clave">Contraseña:</label>
-                <input type="password" id="clave" name="clave" required>
-                <button type="submit">Entrar</button>
-            </form>
-        </section>
     </main>
-    <footer>
-        <p>&copy; 2026 Reparos Rufián. Todos los derechos reservados.</p>
-        <div id="cookie-popup" style="position:fixed;left:0;right:0;bottom:2vh;background:rgba(34,34,34,0.98);color:#fff;padding:2rem 1.5rem;display:none;flex-direction:column;align-items:center;gap:1.2rem;z-index:1000;box-shadow:0 -4px 24px rgba(0,0,0,0.18);font-size:1.08rem;border-radius:18px 18px 0 0;animation:slideUp 0.7s cubic-bezier(.4,1.4,.6,1) 1;max-width:420px;margin:auto;right:0;left:0;">
-            <span style="text-align:center;">Utilizamos cookies propias y de terceros para analizar la navegación y mejorar nuestros servicios. Puedes aceptar o rechazar el uso de cookies.</span>
-            <div style="display:flex;gap:1.2rem;justify-content:center;">
-                <button id="aceptarCookies" style="padding:0.7rem 2.2rem;background:linear-gradient(90deg,#22B14C 60%,#25C253 100%);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:1.08rem;box-shadow:0 2px 8px rgba(34,177,76,0.13);transition:background 0.2s;">Aceptar</button>
-                <button id="rechazarCookies" style="padding:0.7rem 2.2rem;background:linear-gradient(90deg,#d32f2f 60%,#ff5e5e 100%);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:1.08rem;box-shadow:0 2px 8px rgba(211,47,47,0.13);transition:background 0.2s;">Rechazar</button>
-            </div>
+<footer style="position: relative; background-color: #2d3e50; padding: 1.5rem 0 2.5rem 0; border-radius: 0 0 18px 18px; text-align: center;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; padding-top: 1rem;">
+            <a href="privacidad.html" style="color: #93cef9; text-decoration: none; font-size: 0.9rem; font-weight: 700;">Política de Privacidad</a>
+            <a href="cookies-info.html" style="color: #93cef9; text-decoration: none; font-size: 0.9rem; font-weight: 700;">Política de Cookies</a>
+            <a href="terminos.html" style="color: #93cef9; text-decoration: none; font-size: 0.9rem; font-weight: 700;">Términos y Condiciones</a>
         </div>
+
+        <p style="color: #2d3e50; font-weight: 600; margin: 0; font-size: 0.95rem;">&copy; 2026 Reparos Rufián. Todos los derechos reservados.</p>
+
+        <div id="cookie-popup" style="position:fixed; left:0; right:0; bottom:0; background:rgba(35, 41, 70, 0.98); color:#fff; padding:1.5rem; display:none; flex-direction:column; align-items:center; z-index:10000; box-shadow: 0 -4px 20px rgba(0,0,0,0.3); border-top: 3px solid #ffb347; animation: slideUp 0.6s ease-out;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🍪</div>
+            <p style="text-align:center; margin-bottom: 1.2rem; max-width: 600px; font-family: 'Segoe UI', sans-serif; line-height: 1.5;">
+                En <strong>Reparos Rufián</strong> usamos cookies para que la web no sea otro estropicio más. <br>Ayúdanos a mejorar aceptando su uso.
+            </p>
+            <div style="display:flex; gap:1rem; margin-bottom: 1rem;">
+                <button id="aceptarCookies" style="padding:0.7rem 1.8rem; background:#22B14C; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:700; transition: 0.3s;">Aceptar</button>
+                <button id="rechazarCookies" style="padding:0.7rem 1.8rem; background:#d32f2f; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:700; transition: 0.3s;">Rechazar</button>
+            </div>
+            <a href="cookies-info.html" style="text-decoration: none;">
+                <button type="button" style="padding:0.5rem 1.2rem; background: transparent; color: #ffb347; border: 1px solid #ffb347; border-radius: 8px; cursor:pointer; font-weight:600; font-size: 0.9rem; transition: 0.3s;">
+                    Más información sobre las cookies
+                </button>
+            </a>
+        </div>
+
         <style>
-        @keyframes slideUp {
-            from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+            @keyframes slideUp {
+                from { transform: translateY(100%); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            #cookie-popup button:hover {
+                filter: brightness(1.1);
+                transform: scale(1.02);
+            }
         </style>
+
         <script>
-        // Cookies popup logic
-        function setCookie(name, value, days) {
-            let expires = "";
-            if (days) {
-                const date = new Date();
-                date.setTime(date.getTime() + (days*24*60*60*1000));
-                expires = "; expires=" + date.toUTCString();
+            // Lógica de Cookies
+            function setCookie(name, value, days) {
+                let expires = "";
+                if (days) {
+                    const date = new Date();
+                    date.setTime(date.getTime() + (days*24*60*60*1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "")  + expires + "; path=/";
             }
-            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-        }
-        function getCookie(name) {
-            const nameEQ = name + "=";
-            const ca = document.cookie.split(';');
-            for(let i=0;i < ca.length;i++) {
-                let c = ca[i];
-                while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+
+            function getCookie(name) {
+                const nameEQ = name + "=";
+                const ca = document.cookie.split(';');
+                for(let i=0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+                }
+                return null;
             }
-            return null;
-        }
-        window.addEventListener('DOMContentLoaded', function() {
-            const popup = document.getElementById('cookie-popup');
-            const btnAceptar = document.getElementById('aceptarCookies');
-            const btnRechazar = document.getElementById('rechazarCookies');
-            if(getCookie('cookiesAceptadas')) {
-                popup.style.display = 'none';
-            } else {
-                popup.style.display = 'flex';
-            }
-            btnAceptar.onclick = function() {
-                setCookie('cookiesAceptadas','si',365);
-                popup.style.display = 'none';
-            };
-            btnRechazar.onclick = function() {
-                setCookie('cookiesAceptadas','no',365);
-                popup.style.display = 'none';
-            };
-        });
-        </script>
-        <script>
-        const btn = document.getElementById('toggleNosotros');
-        const contenido = document.getElementById('contenidoNosotros');
-        btn.addEventListener('click', function() {
-            if (contenido.style.display === 'none') {
-                contenido.style.display = 'block';
-                btn.textContent = 'Ocultar';
-            } else {
-                contenido.style.display = 'none';
-                btn.textContent = 'Ver más';
-            }
-        });
+
+            window.addEventListener('DOMContentLoaded', function() {
+                const popup = document.getElementById('cookie-popup');
+                const btnAceptar = document.getElementById('aceptarCookies');
+                const btnRechazar = document.getElementById('rechazarCookies');
+
+                if(!getCookie('cookiesAceptadas')) {
+                    popup.style.display = 'flex';
+                }
+
+                btnAceptar.onclick = function() {
+                    setCookie('cookiesAceptadas','si', 365);
+                    popup.style.display = 'none';
+                };
+
+                btnRechazar.onclick = function() {
+                    setCookie('cookiesAceptadas','no', 365);
+                    popup.style.display = 'none';
+                };
+            });
         </script>
     </footer>
 </body>
 </html>
-

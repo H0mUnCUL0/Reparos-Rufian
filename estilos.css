@@ -208,12 +208,16 @@ nav ul li a:hover {
 main {
     max-width: 900px;
     margin: 2rem auto;
-    padding: 1rem;
-    background: rgba(255,255,255,0.92) url("C:\Users\david\Desktop\SISI\Rufián calvo.png") left bottom;
-    background-size: 180px auto;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    background-image: "C:\Users\david\Desktop\SISI\Rufián calvo.png";
+    padding: 2rem;
+    background: rgba(255,255,255,0.95);
+    /* Usamos ruta relativa. Asegúrate de que la foto esté en la misma carpeta */
+    background-image: url("rufian_calvo.png"); 
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 150px auto;
+    border-radius: 18px;
+    box-shadow: 0 4px 32px rgba(44,62,80,0.10);
+    position: relative;
 }
 
 section {
@@ -282,4 +286,57 @@ footer {
     section {
         margin-bottom: 1.5rem;
     }
+}
+.dispositivo-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+/* Escondemos el radio button real */
+.radio-card input[type="radio"] {
+    display: none;
+}
+
+/* Estilo de la tarjeta */
+.radio-card .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.radio-card .card-content img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.5rem;
+    object-fit: contain;
+}
+
+.radio-card .card-content span {
+    font-weight: 600;
+    color: #2d3050;
+    font-size: 0.9rem;
+}
+
+/* Efecto al pasar el ratón */
+.radio-card:hover .card-content {
+    border-color: #93cef9;
+    background: #f0f8ff;
+}
+
+/* Estilo cuando la tarjeta está seleccionada */
+.radio-card input[type="radio"]:checked + .card-content {
+    border-color: #2d3050;
+    background: #93cef9;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
