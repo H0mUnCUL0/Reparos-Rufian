@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información relevante - Reparos Rufián</title>
+    <link rel="stylesheet" href="estilos.css">
+   <style>
+    /* Bloqueo total de la foto de fondo en esta página */
+    main {
+        background-image: none !important; 
+    }
+
+    .ceo-container {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .ceo-foto {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        border: 4px solid #232946; /* Color azul oscuro de tu CSS */
+        object-fit: cover;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .ceo-nombre {
+        display: block;
+        font-weight: bold;
+        color: #232946;
+        margin-top: 0.5rem;
+        font-size: 1.1rem;
+    }
+    .cita-ceo {
+        font-style: italic;
+        text-align: center;
+        color: #444;
+        background: #f1f4f8;
+        padding: 1.2rem;
+        border-radius: 12px;
+        border-left: 5px solid #232946;
+        margin: 1.5rem 0;
+        line-height: 1.5;
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Información relevante</h1>
+    </header>
+    <main>
+        <section id="sobre-nosotros">
+            <button id="toggle-sobre-nosotros" style="font-size:1.2rem;padding:0.5rem 1rem;margin-bottom:1rem;cursor:pointer;">Sobre nosotros ▼</button>
+            
+            <div id="contenido-sobre-nosotros" style="display:none;">
+                <div class="ceo-container">
+                    <img src="rufian_calvo.png" alt="CEO de Reparos Rufián" class="ceo-foto">
+                    <span class="ceo-nombre">Rufián - CEO & Jefe de Estropicios</span>
+                </div>
+
+                <p class="cita-ceo">
+                    "Si tu aparato ha decidido jubilarse antes de tiempo o ha sufrido un 'pequeño percance', no te preocupes. Aquí no juzgamos a nadie, solo arreglamos lo que otros dan por perdido. Confía en mi equipo; somos expertos en resucitar tecnología y en que no te cueste un riñón."
+                </p>
+
+                <p>En Reparos Rufián contamos con más de diez años de experiencia en el sector de la reparación electrónica, ofreciendo soluciones rápidas, eficaces y adaptadas a las necesidades de cada cliente. A lo largo de nuestra trayectoria, hemos trabajado con una amplia variedad de dispositivos y tecnologías, lo que nos ha permitido consolidar un servicio técnico sólido, profesional y orientado a la excelencia.</p>
+                
+                <p>Vivimos en una sociedad donde la tecnología se ha convertido en un elemento imprescindible. Teléfonos móviles, tablets, ordenadores y consolas forman parte de la rutina diaria, tanto en el ámbito personal como en el profesional. Estos dispositivos no solo facilitan la comunicación y el entretenimiento, sino que también constituyen herramientas fundamentales para el trabajo, el estudio y la gestión de la información. Conscientes de esta realidad, en Reparos Rufián entendemos que una avería puede generar inconvenientes significativos, por lo que priorizamos la rapidez y la eficacia en cada reparación.</p>
+                
+                <p>Nuestra empresa se especializa en la reparación de dispositivos electrónicos de uso cotidiano. Desde incidencias comunes como pantallas dañadas, problemas de batería o fallos de software, hasta averías más complejas relacionadas con componentes internos o sistemas electrónicos, nuestro equipo técnico aplica diagnósticos precisos y soluciones optimizadas. Cada intervención se realiza siguiendo procedimientos técnicos rigurosos, utilizando herramientas especializadas y componentes de calidad que garanticen resultados duraderos.</p>
+            </div>
+        </section>
+
+        <section id="servicios">
+            <h2>Servicios</h2>
+            <ul>
+                <li>Reparación de consolas</li>
+                <li>Reparación de móviles y tablets</li>
+                <li>Reparación de ordenadores</li>
+                <li>Otros servicios técnicos</li>
+            </ul>
+        </section>
+
+        <section id="tarifas">
+            <h2>Tarifas</h2>
+            <ul>
+                <li>Diagnóstico: Gratis la primera consulta</li>
+                <li>Reparación de consolas: Desde 30€</li>
+                <li>Reparación de móviles/tablets: Desde 25€</li>
+                <li>Reparación de ordenadores: Desde 35€</li>
+            </ul>
+        </section>
+
+        <div style="margin-top:2rem;">
+            <a href="index.html" style="padding:0.7rem 1.5rem;background:#2d3e50;color:#fff;border-radius:8px;text-decoration:none;font-size:1rem;font-weight:600;">Volver al menú principal</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Reparos Rufián. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    // Script para desplegable "Sobre nosotros"
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('toggle-sobre-nosotros');
+        const contenido = document.getElementById('contenido-sobre-nosotros');
+        let abierto = false;
+        
+        btn.addEventListener('click', function() {
+            abierto = !abierto;
+            if (abierto) {
+                contenido.style.display = 'block';
+                btn.innerHTML = 'Sobre nosotros ▲';
+            } else {
+                contenido.style.display = 'none';
+                btn.innerHTML = 'Sobre nosotros ▼';
+            }
+        });
+    });
+    </script>
+</body>
+</html>
