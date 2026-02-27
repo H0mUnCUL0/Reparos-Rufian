@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>¡Enviado! - Reparos Rufián</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body { background: #2d3e50; color: white; text-align: center; padding-top: 50px; font-family: sans-serif; }
+        .card { background: white; color: #333; max-width: 400px; margin: auto; padding: 2rem; border-radius: 15px; }
+        .codigo { font-size: 1.5rem; font-weight: bold; color: #ffb347; margin: 1rem 0; }
+        .btn { display: inline-block; padding: 10px 20px; background: #ffb347; color: #2d3e50; text-decoration: none; border-radius: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>¡Mensaje Recibido!</h2>
+        <p>Apunta tu código de seguimiento:</p>
+        <div id="display-codigo" class="codigo">---</div>
+        <p>Podrás ver nuestra respuesta en el apartado "Consulta" del menú principal.</p>
+        <br>
+        <a href="index.html" class="btn">Volver al Inicio</a>
+    </div>
+
+    <script>
+        // Mostrar el código que acabamos de generar
+        document.getElementById('display-codigo').innerText = sessionStorage.getItem('codigoReciente') || "ERROR";
+    </script>
+</body>
+</html>

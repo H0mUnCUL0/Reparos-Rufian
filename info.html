@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información relevante - Reparos Rufián</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        /* Bloqueo total de la foto de fondo en esta página */
+        main {
+            background-image: none !important; 
+        }
+
+        /* Estilos para el CEO */
+        .ceo-container {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .ceo-foto {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid #2d3e50;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .ceo-nombre {
+            display: block;
+            font-weight: bold;
+            color: #2d3e50;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .cita-ceo {
+            font-style: italic;
+            text-align: center;
+            color: #444;
+            background: #f1f4f8;
+            padding: 1.2rem;
+            border-radius: 12px;
+            border-left: 5px solid #2d3e50;
+            margin: 1.5rem 0;
+            line-height: 1.5;
+        }
+
+        /* NUEVOS ESTILOS PARA LA PLANTILLA (EQUIPO) */
+        .team-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 1rem;
+        }
+        .team-card {
+            display: flex;
+            align-items: center; /* Centra verticalmente foto y texto */
+            background: #fff;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        .team-foto {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px; /* Espacio entre foto y texto */
+            border: 2px solid #ffb347;
+        }
+        .team-info h3 {
+            margin: 0;
+            color: #2d3e50;
+            font-size: 1.2rem;
+        }
+        .team-info p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Información relevante</h1>
+    </header>
+    <main>
+        <section id="sobre-nosotros">
+            <button id="toggle-sobre-nosotros" style="font-size:1.2rem;padding:0.5rem 1rem;margin-bottom:1rem;cursor:pointer;">Sobre nosotros ▼</button>
+            
+            <div id="contenido-sobre-nosotros" style="display:none;">
+                <div class="ceo-container">
+                    <img src="rufian_calvo.png" alt="CEO de Reparos Rufián" class="ceo-foto">
+                    <span class="ceo-nombre">Rufián - CEO & Jefe de Estropicios</span>
+                </div>
+
+                <p class="cita-ceo">
+                    "Si tu aparato ha decidido jubilarse antes de tiempo o ha sufrido un 'pequeño percance', no te preocupes. Aquí no juzgamos a nadie, solo arreglamos lo que otros dan por perdido."
+                </p>
+
+                <p>En Reparos Rufián contamos con más de diez años de experiencia en el sector de la reparación electrónica, ofreciendo soluciones rápidas y eficaces.</p>
+            </div>
+        </section>
+
+        <section id="plantilla">
+            <h2>Nuestro Equipo</h2>
+            <div class="team-grid">
+                
+                <div class="team-card">
+                    <img src="rufian_calvo.png" alt="Rufián" class="team-foto">
+                    <div class="team-info">
+                        <h3>Rufián</h3>
+                        <p>Especialista en Hardware y Soldadura</p>
+                        <p>Calvo principal</p>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <img src="pepeviyuela.png" alt="Pepe" class="team-foto"> <div class="team-info">
+                        <h3>Pepe</h3>
+                        <p>Atención al Cliente y Dudas</p>
+                        <p>Calvo secundario</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="servicios">
+            <h2>Servicios</h2>
+            <ul>
+                <li>Reparación de consolas</li>
+                <li>Reparación de móviles y tablets</li>
+                <li>Reparación de ordenadores</li>
+            </ul>
+        </section>
+
+        <section id="tarifas">
+            <h2>Tarifas</h2>
+            <ul>
+                <li>Diagnóstico: Gratis la primera consulta</li>
+                <li>Reparación de consolas: Desde 30€</li>
+                <li>Reparación de móviles/tablets: Desde 25€</li>
+                <li>Reparación de ordenadores: Desde 35€</li>
+            </ul>
+        </section>
+
+        <div style="margin-top:2rem;">
+            <a href="index.html" style="padding:0.7rem 1.5rem;background:#2d3e50;color:#fff;border-radius:8px;text-decoration:none;font-size:1rem;font-weight:600;">Volver al menú principal</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Reparos Rufián. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+    // Script para desplegable "Sobre nosotros"
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('toggle-sobre-nosotros');
+        const contenido = document.getElementById('contenido-sobre-nosotros');
+        let abierto = false;
+        
+        btn.addEventListener('click', function() {
+            abierto = !abierto;
+            if (abierto) {
+                contenido.style.display = 'block';
+                btn.innerHTML = 'Sobre nosotros ▲';
+            } else {
+                contenido.style.display = 'none';
+                btn.innerHTML = 'Sobre nosotros ▼';
+            }
+        });
+    });
+    </script>
+</body>
+</html>

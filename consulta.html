@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta - Reparos Rufián</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Estado de tu trámite</h1>
+    </header>
+    <main>
+        <section style="max-width: 500px; margin: auto;">
+            <a href="index.html" style="text-decoration: none; color: #666;">← Volver al menú</a>
+            <br><br>
+            <form id="form-consulta">
+                <label for="codigo">Introduce tu código (RUF- o DUD-):</label>
+                <input type="text" id="codigo" placeholder="Ej: RUF-A1B2C3" required style="text-transform: uppercase;">
+                <button type="submit">Consultar estado</button>
+            </form>
+
+            <div id="resultado-consulta" style="margin-top: 2rem;">
+                </div>
+        </section>
+    </main>
+
+    <script src="reparacion_data.js"></script>
+    <script>
+        document.getElementById('form-consulta').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const codigo = document.getElementById('codigo').value.trim().toUpperCase();
+            const resultadoDiv = document.getElementById('resultado-consulta');
+            
+            // Usamos la función de búsqueda de nuestro JS
+            const datos = window.reparosRufian.buscarReparacionPorCodigo(codigo);
+
+            if (datos) {
+                // Personalización según prefijo
+                const esReparacion = datos.codigo.startsWith('RUF');
+                const titulo = esReparacion ? "Estado de Reparación" : "Respuesta a tu Duda";
+                const labelInfo = esReparacion ? "Dispositivo" : "Asunto";
+
+                resultadoDiv.innerHTML = `
+                    <div style="background: white; padding: 1.5rem; border-radius: 10px; border-top: 5px solid #ffb347; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                        <h2 style="margin-top:0; color:#2d3e50;">${titulo}</h2>
+                        <p><strong>Código:</strong> ${datos.codigo}</p>
+                        <p><strong>Cliente:</strong> ${datos.nombre}</p>
+                        <p><strong>${labelInfo}:</strong> ${datos.dispositivo}</p>
+                        <hr>
+                        <p><strong>Estado actual:</strong> <span style="color: #22B14C; font-weight:bold;">${datos.estado}</span></p>
+                        
+                        <div style="background: #f9f9f9; padding: 1rem; border-radius: 5px; margin-top: 1rem;">
+                            <p style="margin:0; font-weight:bold;">Mensaje de nuestro equipo:</p>
+                            <p style="margin: 0.5rem 0 0 0; color: #444;">
+                                ${datos.respuesta || "Aún no hay una respuesta grabada. ¡Vuelve a consultar pronto!"}
+                            </p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultadoDiv.innerHTML = `
+                    <p style="color: red; background: #ffe6e6; padding: 10px; border-radius: 5px; text-align:center;">
+                        ⚠️ No se encontró ningún registro con el código <strong>${codigo}</strong>.
+                    </p>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

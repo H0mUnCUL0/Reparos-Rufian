@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Reparos Rufián</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body { background: #f4f7f6; font-family: 'Segoe UI', sans-serif; }
+        header { background: #2d3e50; color: white; padding: 1rem; text-align: center; }
+        .ticket { 
+            background: white; 
+            border-radius: 12px; 
+            padding: 1.5rem; 
+            margin-bottom: 1.5rem; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 6px solid #ffb347;
+        }
+        .badge { background: #ffb347; color: #2d3e50; padding: 4px 10px; border-radius: 20px; font-weight: bold; font-size: 0.85rem; }
+        .info-p { margin: 0.5rem 0; color: #444; }
+        
+        textarea { 
+            width: 100%; 
+            min-height: 80px; 
+            margin-top: 1rem; 
+            padding: 10px; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 1rem; }
+        
+        .btn { 
+            padding: 10px 15px; 
+            border: none; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: 0.2s;
+        }
+        .btn-save { background: #22B14C; color: white; flex: 2; }
+        .btn-status { background: #2d3e50; color: white; flex: 1; }
+        .btn-delete { background: #d32f2f; color: white; }
+        
+        .btn:hover { filter: brightness(1.2); transform: translateY(-1px); }
+        
+        main { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+        .user-welcome { font-size: 0.9rem; color: #ffb347; margin-top: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="titulo-panel">Panel de Gestión</h1>
+        <div id="welcome-msg" class="user-welcome"></div>
+    </header>
+
+    <main>
+        <section>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2 id="subtitulo-peticiones">Peticiones</h2>
+                <button onclick="cerrarSesion()" style="background:none; border: 1px solid #d32f2f; color:#d32f2f; padding:5px 10px; border-radius:5px; cursor:pointer;">Cerrar Sesión</button>
+            </div>
+
+            <div id="lista-tareas"></div>
+        </section>
+    </main>
+
+    <script src="reparacion_data.js"></script>
+    
+    <script>
+        // 1. Protección de ruta y personalización
+        const rol = sessionStorage.getItem('rolEmpleado');
+        if (sessionStorage.getItem('sesionOperador') !== 'activa') {
+            window.location.href = 'login.html';
+        }
+
+        // Personalizar interfaz según el usuario
+        const welcome = document.getElementById('welcome-msg');
+        if (rol === 'reparaciones') {
+            welcome.innerText = "Conectado como: Rufián (Especialista Técnico)";
+            document.getElementById('subtitulo-peticiones').innerText = "Reparaciones de Hardware";
+        } else {
+            welcome.innerText = "Conectado como: Pepe (Atención al Cliente)";
+            document.getElementById('subtitulo-peticiones').innerText = "Dudas y Consultas";
+        }
+
+        // 2. Función para pintar los tickets FILTRADOS
+        function cargarTareas() {
+            const lista = JSON.parse(localStorage.getItem('reparaciones') || '[]');
+            const contenedor = document.getElementById('lista-tareas');
+            
+            // FILTRO: Rufián ve 'reparacion', Pepe ve 'duda'
+            // Mapeamos para mantener el índice original del array para que funcionen los botones
+            const listaFiltrada = lista
+                .map((item, index) => ({ ...item, originalIndex: index }))
+                .filter(item => {
+                    if (rol === 'reparaciones') return item.tipo === 'reparacion';
+                    if (rol === 'dudas') return item.tipo === 'duda';
+                    return false;
+                });
+
+            if (listaFiltrada.length === 0) {
+                contenedor.innerHTML = `
+                    <div style="text-align:center; padding: 3rem; color: #888;">
+                        <p style="font-size: 1.2rem;">No hay tareas pendientes en esta sección.</p>
+                        <p>Todo en orden por ahora.</p>
+                    </div>`;
+                return;
+            }
+
+            // Mostramos los tickets (reverse para ver los nuevos arriba)
+            contenedor.innerHTML = listaFiltrada.reverse().map((item) => `
+                <div class="ticket">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                        <span class="badge">${item.codigo}</span>
+                        <span style="font-size: 0.8rem; color:#999;">${item.fecha || ''}</span>
+                    </div>
+                    
+                    <p class="info-p"><strong>Cliente:</strong> ${item.nombre} <span style="font-size:0.9rem; color:#666;">(${item.email})</span></p>
+                    <p class="info-p"><strong>Tema:</strong> ${item.dispositivo}</p>
+                    <p class="info-p" style="background:#f9f9f9; padding:8px; border-radius:5px; font-style:italic;">
+                        "${item.descripcion}"
+                    </p>
+                    <p class="info-p"><strong>Estado Actual:</strong> <b style="color:#2d3e50;">${item.estado}</b></p>
+
+                    <label style="display:block; margin-top:1rem; font-weight:bold; font-size:0.9rem;">Tu respuesta:</label>
+                    <textarea id="resp-${item.originalIndex}" placeholder="Escribe aquí...">${item.respuesta || ''}</textarea>
+
+                    <div class="btn-group">
+                        <button class="btn btn-save" onclick="enviarRespuesta(${item.originalIndex})">Enviar Respuesta</button>
+                        <button class="btn btn-status" onclick="cambiarEstado(${item.originalIndex})">Cambiar Estado</button>
+                        <button class="btn btn-delete" onclick="eliminarTicket(${item.originalIndex})">Eliminar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function cerrarSesion() {
+            sessionStorage.removeItem('sesionOperador');
+            sessionStorage.removeItem('rolEmpleado');
+            window.location.href = 'index.html';
+        }
+
+        cargarTareas();
+    </script>
+</body>
+</html>

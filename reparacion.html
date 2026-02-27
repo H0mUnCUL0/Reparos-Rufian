@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar reparación - Reparos Rufián</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" type="image/png" href="logo1.png">
+    <style>
+        /* Botón Volver */
+        .btn-volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #f4f4f4;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            border: 1px solid #ccc;
+            font-family: sans-serif;
+            transition: 0.3s;
+        }
+        .btn-volver:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* --- EFECTOS PARA EL SELECTOR DE IMÁGENES --- */
+        
+        /* Ocultamos el radio button original pero mantenemos su funcionalidad */
+        .radio-card input[type="radio"] {
+            display: none;
+        }
+
+        .radio-card {
+            cursor: pointer;
+            display: block;
+        }
+
+        .card-content {
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        /* Efecto al pasar el ratón (hover) */
+        .card-content:hover {
+            border-color: #ffb347;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* EFECTO CUANDO ESTÁ SELECCIONADO */
+        .radio-card input[type="radio"]:checked + .card-content {
+            border-color: #ffb347; /* Borde naranja de Rufián */
+            background-color: #fff9f0; /* Un fondo muy suave naranja */
+            box-shadow: 0 0 12px rgba(255, 179, 71, 0.4);
+            transform: scale(1.05); /* Se hace un pelín más grande */
+        }
+
+        .card-content img {
+            max-width: 50px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        .card-content span {
+            font-weight: bold;
+            color: #2d3e50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Solicitar reparación</h1>
+    </header>
+    <main>
+        <section>
+            <a href="index.html" class="btn-volver">← Volver al Menú</a>
+
+            <h2>Formulario de solicitud</h2>
+            <form id="form-reparacion">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required pattern="^[a-zA-Z0-9._%+-]+@(gmail|hotmail)\.com$" title="El correo debe terminar en @gmail.com o @hotmail.com">
+
+                <label>Selecciona tu dispositivo:</label>
+                <div class="dispositivo-selector" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                    
+                    <label class="radio-card">
+                        <input type="radio" name="dispositivo" value="móvil" required>
+                        <div class="card-content">
+                            <img src="movil.png" alt="Móvil">
+                            <span>Móvil</span>
+                        </div>
+                    </label>
+
+                    <label class="radio-card">
+                        <input type="radio" name="dispositivo" value="tablet">
+                        <div class="card-content">
+                            <img src="tablet.png" alt="Tablet">
+                            <span>Tablet</span>
+                        </div>
+                    </label>
+
+                    <label class="radio-card">
+                        <input type="radio" name="dispositivo" value="ordenador">
+                        <div class="card-content">
+                            <img src="pc.png" alt="PC">
+                            <span>Ordenador</span>
+                        </div>
+                    </label>
+
+                    <label class="radio-card">
+                        <input type="radio" name="dispositivo" value="consola">
+                        <div class="card-content">
+                            <img src="consola.png" alt="Consola">
+                            <span>Consola</span>
+                        </div>
+                    </label>
+
+                    <label class="radio-card">
+                        <input type="radio" name="dispositivo" value="portatil">
+                        <div class="card-content">
+                            <img src="portatil.png" alt="portatil">
+                            <span>Portátil</span>
+                        </div>
+                    </label>
+
+                    <label class="radio-card">
+                        <input type="radio" name="dispositivo" value="otro">
+                        <div class="card-content">
+                            <img src="otro.png" alt="otro">
+                            <span>Otro</span>
+                        </div>
+                    </label>
+                </div>
+
+                <label for="descripcion">Descripción del problema:</label>
+                <textarea id="descripcion" name="descripcion" required></textarea>
+                
+                <button type="submit">Enviar solicitud</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Reparos Rufián. Todos los derechos reservados.</p>
+    </footer>
+    <script src="reparacion_data.js"></script>
+</body>
+</html>

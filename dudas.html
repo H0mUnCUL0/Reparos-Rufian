@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dudas - Reparos Rufián</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" type="image/png" href="logo1.png">
+    <style>
+        .btn-volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: #f4f4f4;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            border: 1px solid #ccc;
+            font-family: sans-serif;
+        }
+        .btn-volver:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Atención de dudas</h1>
+    </header>
+    <main>
+        <section>
+            <a href="index.html" class="btn-volver">← Volver al Menú</a>
+
+            <h2>¿Tienes alguna duda?</h2>
+            <p>Rellena el siguiente formulario y un operador te atenderá lo antes posible.</p>
+            
+            <form id="form-dudas">
+                <label for="nombre-duda">Nombre:</label>
+                <input type="text" id="nombre-duda" name="nombre" required>
+                
+                <label for="email-duda">Email:</label>
+                <input type="email" id="email-duda" name="email" required pattern="^[a-zA-Z0-9._%+-]+@(gmail|hotmail)\.com$" title="El correo debe terminar en @gmail.com o @hotmail.com">
+                
+                <label for="mensaje-duda">Tu duda:</label>
+                <textarea id="mensaje-duda" name="mensaje" required></textarea>
+                
+                <button type="submit">Enviar duda</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Reparos Rufián. Todos los derechos reservados.</p>
+    </footer>
+    
+    <script src="reparacion_data.js"></script>
+</body>
+</html>
