@@ -1,0 +1,1 @@
+Cuando te metas al área privada vas a tener que escribir usuario y contraseña, tienes que escribir operador_rep como usuario y contraseña rufián con tilde para las reparaciones y operador_dud como usuario y contraseña pepe para las dudas
